@@ -1,0 +1,25 @@
+name: AI Defect Prediction Scan
+ 
+on:
+  pull_request:
+    paths:
+      - "**.java"
+ 
+jobs:
+  defect-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install javalang lightgbm scikit-learn pandas numpy joblib
+      - name: Download model
+        run: |
+          curl -L ${{ secrets.MODEL_URL }} -o model.pkl
+          curl -L ${{ secrets.SCALER_URL }} -o scaler.pkl
+      - name: Run defect scan
+        run: python defect_scan.py
