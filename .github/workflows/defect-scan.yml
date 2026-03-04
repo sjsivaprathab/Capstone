@@ -19,7 +19,7 @@ jobs:
         run: pip install javalang lightgbm scikit-learn pandas numpy joblib
       - name: Download model
         run: |
-          curl -L ${{ secrets.MODEL_URL }} -o model.pkl
-          curl -L ${{ secrets.SCALER_URL }} -o scaler.pkl
+          curl -L "${{ secrets.MODEL_URL }}" -o java_bug_detector_lightgbm.pkl
+          curl -L "${{ secrets.SCALER_URL }}" -o scaler.pkl
       - name: Run defect scan
         run: python defect_scan.py
