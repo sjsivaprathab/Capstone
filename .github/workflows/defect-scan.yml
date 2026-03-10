@@ -38,23 +38,24 @@ jobs:
         run: |
           curl -L "${{ secrets.MODEL_URL }}" -o java_bug_detector_lightgbm.pkl
           curl -L "${{ secrets.SCALER_URL }}" -o scaler.pkl
+
       - name: Download defect scan script
         run: |
-          curl -L "${{secrets.PYTHONSCRIPTURL}}" -o defect_scan.py
-      
+          curl -L "${{ secrets.PYTHONSCRIPTURL }}" -o defect_scan.py
+
       - name: Run AI Defect Scan
         run: |
           python defect_scan.py ${{ steps.changed-files.outputs.files }}
-          
-       - name: Download comments on PR script
+
+      - name: Download comments on PR script
         run: |
-          curl -L "${{secrets.PRCommentScriptURL}}" -o pr_comment.py
-        
+          curl -L "${{ secrets.PRCommentScriptURL }}" -o pr_comment.py
+
       - name: Comment results on PR
         if: github.event_name == 'pull_request'
         run: |
           python pr_comment.py
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           REPO: ${{ github.repository }}
