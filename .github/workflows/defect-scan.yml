@@ -42,7 +42,7 @@ jobs:
         run: pip install gdown
         
       - name: Download defect scan script
-        run: gdown "${{ secrets.PYTHONSCRIPTURL }}" -o defect_scan.py
+        run: gdown https://drive.google.com/uc?id=1cdAHCOG8KkM8agHLuIsGPdxCHhn05dKL -O defect_scan.py
       - name: Debug file
         run: |
           ls -l
