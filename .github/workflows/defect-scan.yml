@@ -37,8 +37,8 @@ jobs:
       - name: Install gdown
         run: pip install gdown
       
-      - name: Download model
-        run:
+      - name: Download model files
+        run: |
           gdown https://drive.google.com/uc?id=1S16yj9B6EcwXMR3q887FA26R2XXuCTk4 -O java_bug_detector_lightgbm.pkl
           gdown https://drive.google.com/uc?id=1ltfvExpjAiucZRv6hTv2WhgAfQBT8h7I -O scaler.pkl
     
