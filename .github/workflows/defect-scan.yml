@@ -30,16 +30,18 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: "3.11"
-
+          
       - name: Install dependencies
         run: pip install javalang lightgbm scikit-learn pandas numpy joblib requests
-
-      - name: Download model
-        run: |
-          curl -L "${{ secrets.MODEL_URL }}" -o java_bug_detector_lightgbm.pkl
-          curl -L "${{ secrets.SCALER_URL }}" -o scaler.pkl
+      
       - name: Install gdown
         run: pip install gdown
+      
+      - name: Download model
+        run:
+          gdown https://drive.google.com/uc?id=1S16yj9B6EcwXMR3q887FA26R2XXuCTk4 -O java_bug_detector_lightgbm.pkl
+          gdown https://drive.google.com/uc?id=1ltfvExpjAiucZRv6hTv2WhgAfQBT8h7I -O scaler.pkl
+    
         
       - name: Download defect scan script
         run: gdown https://drive.google.com/uc?id=1cdAHCOG8KkM8agHLuIsGPdxCHhn05dKL -O defect_scan.py
