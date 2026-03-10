@@ -48,7 +48,7 @@ jobs:
           
        - name: Download comments on PR script
         run: |
-          curl -L "${{PRCommentScriptURL}}" -o pr_comment.py
+          curl -L "${{secrets.PRCommentScriptURL}}" -o pr_comment.py
         
       - name: Comment results on PR
         if: github.event_name == 'pull_request'
