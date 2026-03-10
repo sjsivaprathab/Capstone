@@ -39,12 +39,12 @@ jobs:
       
       - name: Download model files
         run: |
-          gdown https://drive.google.com/uc?id=1S16yj9B6EcwXMR3q887FA26R2XXuCTk4 -O java_bug_detector_lightgbm.pkl
-          gdown https://drive.google.com/uc?id=1ltfvExpjAiucZRv6hTv2WhgAfQBT8h7I -O scaler.pkl
+          gdown ${{secrets.MODEL_URL}} -O java_bug_detector_lightgbm.pkl
+          gdown ${{secrets.SCALER_URL}} -O scaler.pkl
     
         
       - name: Download defect scan script
-        run: gdown https://drive.google.com/uc?id=1cdAHCOG8KkM8agHLuIsGPdxCHhn05dKL -O defect_scan.py
+        run: gdown ${{secrets.PYTHONSCRIPTURL}} -O defect_scan.py
       - name: Debug file
         run: |
           ls -l
@@ -55,7 +55,7 @@ jobs:
 
       - name: Download comments on PR script
         run: |
-          curl -L "${{ secrets.PRCommentScriptURL }}" -o pr_comment.py
+          gdown ${{secrets.PRCOMMENTSCRIPTURL}} -O pr_comment.py
 
       - name: Comment results on PR
         if: github.event_name == 'pull_request'
