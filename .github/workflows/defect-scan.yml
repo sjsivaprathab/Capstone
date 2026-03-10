@@ -42,7 +42,10 @@ jobs:
       - name: Download defect scan script
         run: |
           curl -L "${{ secrets.PYTHONSCRIPTURL }}" -o defect_scan.py
-
+      - name: Debug file
+        run: |
+          ls -l
+          head -20 defect_scan.py
       - name: Run AI Defect Scan
         run: |
           python defect_scan.py ${{ steps.changed-files.outputs.files }}
