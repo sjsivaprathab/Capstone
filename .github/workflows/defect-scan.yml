@@ -25,5 +25,5 @@ jobs:
       - name: Download defect scan script
         run: |
           curl -L "${{ secrets.PYTHONSCRIPTURL }}" -o defect_scan.py
-     - name: Run defect scan
+      - name: Run defect scan
         run: python defect_scan.py
