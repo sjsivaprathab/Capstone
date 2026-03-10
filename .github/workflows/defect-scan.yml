@@ -22,5 +22,8 @@ jobs:
         run: |
           curl -L "${{ secrets.MODEL_URL }}" -o java_bug_detector_lightgbm.pkl
           curl -L "${{ secrets.SCALER_URL }}" -o scaler.pkl
-      - name: Run defect scan
+      - name: Download defect scan script
+        run: |
+          curl -L "${{ secrets.PYTHONSCRIPTURL }}" -o defect_scan.py
+     - name: Run defect scan
         run: python defect_scan.py
