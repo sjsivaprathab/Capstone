@@ -38,10 +38,11 @@ jobs:
         run: |
           curl -L "${{ secrets.MODEL_URL }}" -o java_bug_detector_lightgbm.pkl
           curl -L "${{ secrets.SCALER_URL }}" -o scaler.pkl
-
+      - name: Install gdown
+        run: pip install gdown
+        
       - name: Download defect scan script
-        run: |
-          curl -L "${{ secrets.PYTHONSCRIPTURL }}" -o defect_scan.py
+        run: gdown "${{ secrets.PYTHONSCRIPTURL }}" -o defect_scan.py
       - name: Debug file
         run: |
           ls -l
